@@ -13,6 +13,8 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
   // Parse the JSON data
   const invoices = JSON.parse(data);
 
+  const keys = Object.keys(invoices[0]);
+
   const textJsContent = `
     fetch("https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api", {
       "headers": {
@@ -36,9 +38,12 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
 
   const extractInvoiceData = (invoice) => {
     // Define regex patterns for x-xsrf-token, cookie, and body
+    const urlPattern = /https?:\/\/[^\s",]+/;
     const xsrfTokenPattern = /"x-xsrf-token":\s*"([^"]+)"/;
     const cookiePattern = /"cookie":\s*"([^"]+)"/;
     const bodyPattern = /"body":\s*"({.*?})"/s; // 's' flag allows matching multi-line body content
+
+    const firstUrl = invoice.match(urlPattern)[0];
 
     // Extract x-xsrf-token
     const xsrfTokenMatch = invoice.match(xsrfTokenPattern);
@@ -61,14 +66,20 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
       bodyObject = {}; // Set to an empty object if parsing fails
     }
 
-    // Remove INV_DATE, INV_NO, TOTAL_AMT, INV_REMARK from bodyObject
-    const { INV_DATE, INV_NO, TOTAL_AMT, INV_REMARK, ...remainingBody } = bodyObject;
+    // Remove Keys which contain in json from bodyObject
+
+    keys.forEach(key => {
+      delete bodyObject[key];
+    });
+
+    // console.log(bodyObject);
 
     // Return the extracted values in an object, along with remaining body
     return {
+      firstUrl,
       xsrfToken,
       cookie,
-      body: remainingBody,
+      body: bodyObject,
     };
   };
 
@@ -77,9 +88,10 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
 
   // Define the function to send POST request
   const savePurchaseSaleTax = async (invoice) => {
-    const url = "https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api";
 
     const result = extractInvoiceData(textJsContent);
+
+    const url = result.firstUrl;
 
     const headers = {
       "accept": "application/json, text/plain, */*",
@@ -96,19 +108,26 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
     }
 
     const body = {
-      ...result.body, // Spread extracted body properties here
-      INV_DATE: invoice.INV_DATE.trim(),
-      INV_NO: invoice.INV_NO.trim(),
-      TOTAL_AMT: parseFloat(invoice.TOTAL_AMT.replace(/,/g, '').trim()), // Cleaned and parsed TOTAL_AMT
-      INV_REMARK: invoice.INV_REMARK // Dynamic INV_REMARK from JSON
+      ...result.body // Spread extracted body properties here
     };
 
-    try {
-      const response = await axios.post(url, body, { headers });
-      console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
-    } catch (error) {
-      console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
-    }
+    keys.forEach(key => {
+      // Add each key back dynamically based on its corresponding value from the invoice object
+      if (key === 'TOTAL_AMT') {
+        body[key] = parseFloat(invoice[key].replace(/,/g, '').trim()); // For TOTAL_AMT, we clean and parse
+      } else {
+        body[key] = invoice[key].trim(); // For other keys, just trim
+      }
+    });
+
+    console.log(url,body,headers);
+
+    // try {
+    //   const response = await axios.post(url, body, { headers });
+    //   console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
+    // } catch (error) {
+    //   console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
+    // }
   };
 
   // 3. Sequentially send the request
