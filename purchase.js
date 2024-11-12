@@ -1,8 +1,8 @@
-const axios = require('axios');
-const fs = require('fs');  // To read the JSON file
+const axios = require("axios");
+const fs = require("fs"); // To read the JSON file
 
 // Read data.json file
-fs.readFile('./data1.json', 'utf8', (err, data) => {
+fs.readFile("./data.json", "utf8", (err, data) => {
   if (err) {
     console.error("Error reading data.json:", err);
     return;
@@ -12,6 +12,8 @@ fs.readFile('./data1.json', 'utf8', (err, data) => {
 
   // Parse the JSON data
   const invoices = JSON.parse(data);
+
+  const keys = Object.keys(invoices[0]);
 
   const textJsContent = `
   fetch("https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api", {
@@ -27,21 +29,24 @@ fs.readFile('./data1.json', 'utf8', (err, data) => {
       "sec-fetch-site": "same-origin",
       "x-kl-ajax-request": "Ajax_Request",
       "x-requested-with": "XMLHttpRequest",
-      "x-xsrf-token": "63a733ef-5e73-4c39-8611-4dc0f2a41e32",
-      "cookie": "XSRF-TOKEN=63a733ef-5e73-4c39-8611-4dc0f2a41e32; OWPJSESSIONID=YjBjNmYzOWQtODIzYy00MGExLTk3ZTctMzBlZDE0MzVlMjRj; TS01214ff7=01bf609f08e382b973052a0798e7c330e37c4f1fbec60c793938739f670a07b4f739a03a15252fdcde6d629c5bebc2ba24ed84b9ef; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; __zlcmid=1Ofn9wlDH47eDJw; TS01551615=01bf609f08f3e32ab8dff9afe1011bd7fa362f902c7993ba6aa7b8961a9e1630fc8fd520e056636e7e1ce3029f994e0e550c8d94b8; TS39867566027=080cb2d710ab2000bfc66a4b7079630c5532370ed7cb345c17381a3818843445ac11c856e6c21c1f086ae04bad1130009c35856c6b9a968899b9c8d6aa771425037136806cb8354b4892122cb6eb45792c09e1b2686e8d6f4f65393cfc263d04",
-      "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/RwrNlevgDpL5",
+      "x-xsrf-token": "b6311c30-b602-41ca-8578-57cd66abb4da",
+      "cookie": "XSRF-TOKEN=b6311c30-b602-41ca-8578-57cd66abb4da; OWPJSESSIONID=YzE5OTRkNWYtOTBkYy00NGM1LTgxYWMtZDM4Y2ZjNTM5ZTg1; TS01214ff7=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; __zlcmid=1Ofn9wlDH47eDJw; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08a3f36f04811a78c86f982936797190bf1a7f048d2d24b7aa174eeda4c5f58e940f89d30f61bedfd6b3ad1aa92a870a32; TS39867566027=080cb2d710ab20000871c5dc7abc82e1502a72e5bd4b7e407df04fbd258f430c193ac88aa2ba6c1108a166848c113000ed3f697c7432bb06d3c427eec45234c3ecd4c481aed3b746781d316edc1249d28e85d06328b44411794cedb3744e9150",
+      "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/Qqap9d85dNOM",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
-    "body": "{\"COM_ID\":\"RwrNlevgDpL5\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":2,\"ITEM_ID\":\"gGxNBqvKbAQX\",\"INV_DATE\":\"2024-10-01\",\"INV_NO\":\"2024-0275\",\"TOTAL_AMT\":203150,\"TRANSACTION\":2,\"VAT_TYPE\":1,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":3621,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"បន្ទប់ស្នាក់នៅតំលៃ15$  បន្ទប់ស្នាក់នៅតំលៃ20$\",\"STCS_AMT\":0}",
+    "body": "{\"COM_ID\":\"Qqap9d85dNOM\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":1,\"ITEM_ID\":\"YD1pO1o8AZ2k\",\"INV_DATE\":\"2024-10-01\",\"INV_NO\":\"1739998\",\"TOTAL_AMT\":178684,\"TRANSACTION\":1,\"VAT_TYPE\":1,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":0,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"សេវាអ៊ីនធីណេត\",\"STCS_AMT\":0}",
     "method": "POST"
   });
     `;
 
-  const extractInvoiceData = (invoice) => {
+  const extractInvoiceData = invoice => {
     // Define regex patterns for x-xsrf-token, cookie, and body
+    const urlPattern = /https?:\/\/[^\s",]+/;
     const xsrfTokenPattern = /"x-xsrf-token":\s*"([^"]+)"/;
     const cookiePattern = /"cookie":\s*"([^"]+)"/;
     const bodyPattern = /"body":\s*"({.*?})"/s; // 's' flag allows matching multi-line body content
+
+    const firstUrl = invoice.match(urlPattern)[0];
 
     // Extract x-xsrf-token
     const xsrfTokenMatch = invoice.match(xsrfTokenPattern);
@@ -64,28 +69,65 @@ fs.readFile('./data1.json', 'utf8', (err, data) => {
       bodyObject = {}; // Set to an empty object if parsing fails
     }
 
-    // Remove INV_DATE, INV_NO, TOTAL_AMT, INV_REMARK from bodyObject
-    const { INV_DATE, INV_NO, TOTAL_AMT, INV_REMARK, ACCOM_AMT, ...remainingBody } = bodyObject;
+    // Remove Keys which contain in json from bodyObject
+
+    keys.forEach(key => {
+      delete bodyObject[key];
+    });
+
+    // console.log(bodyObject);
 
     // Return the extracted values in an object, along with remaining body
     return {
+      firstUrl,
       xsrfToken,
       cookie,
-      body: remainingBody,
+      body: bodyObject
     };
   };
 
-
   // 2. REQUEST API FUNCTION
 
-  // Define the function to send POST request
-  const savePurchaseSaleTax = async (invoice) => {
-    const url = "https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api";
+  // get company info id if ITEM_ID does existed
 
+  const fetchCompanyInfo = async (tin, headers) => {
+    const url = "https://efiling.tax.gov.kh/gdtefilingweb/company/info";
+
+    const type = tin.includes("-") ? 1 : 2;
+
+    const body = JSON.stringify({
+      TIN: tin,
+      TYPE: type
+    });
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: body
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      console.log(`Response for fetchCompanyInfo for ${tin}:`);
+
+      const data = await response.json();
+      const id = data.data.id;
+      return { id, type };
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  // Define the function to send POST request
+  const savePurchaseSaleTax = async invoice => {
     const result = extractInvoiceData(textJsContent);
 
+    const url = result.firstUrl;
+
     const headers = {
-      "accept": "application/json, text/plain, */*",
+      accept: "application/json, text/plain, */*",
       "accept-language": "en-US,en;q=0.9",
       "content-type": "application/json;charset=UTF-8",
       "sec-fetch-dest": "empty",
@@ -93,19 +135,40 @@ fs.readFile('./data1.json', 'utf8', (err, data) => {
       "sec-fetch-site": "same-origin",
       "x-requested-with": "XMLHttpRequest",
       "x-xsrf-token": result.xsrfToken,
-      "cookie": result.cookie,
-      "referrer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/PZXAr702MNle",
-      "referrerPolicy": "strict-origin-when-cross-origin"
+      cookie: result.cookie,
+      referrer:
+        "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/PZXAr702MNle",
+      referrerPolicy: "strict-origin-when-cross-origin"
+    };
+
+    if (invoice.ITEM_ID) {
+      console.log("HHH");
+      const newItemId = await fetchCompanyInfo(invoice.ITEM_ID, headers);
+      console.log("newItemId", newItemId);
+      if (newItemId) {
+        invoice.ITEM_ID = newItemId.id; // Replace ITEM_ID with the fetched id
+        result.body.TAXPAYER_TYPE = newItemId.type;
+      } else {
+        console.log("No id returned from fetchCompanyInfo.");
+      }
     }
 
     const body = {
-      ...result.body, // Spread extracted body properties here
-      INV_DATE: invoice.INV_DATE.trim(),
-      INV_NO: invoice.INV_NO.trim(),
-      ACCOM_AMT: invoice.ACCOM_AMT,
-      TOTAL_AMT: parseFloat(invoice.TOTAL_AMT.replace(/,/g, '').trim()), // Cleaned and parsed TOTAL_AMT
-      INV_REMARK: invoice.INV_REMARK // Dynamic INV_REMARK from JSON
+      ...result.body // Spread extracted body properties here
     };
+
+    keys.forEach(key => {
+      // Add each key back dynamically based on its corresponding value from the invoice object
+      if (key === "TOTAL_AMT") {
+        body[key] = parseFloat(invoice[key].replace(/,/g, "").trim()); // For TOTAL_AMT, we clean and parse
+      } else if (key === "ACCOM_AMT") {
+        body[key] = parseFloat(invoice[key].replace(/,/g, "").trim()); // For TOTAL_AMT, we clean and parse
+      } else {
+        body[key] = invoice[key].trim(); // For other keys, just trim
+      }
+    });
+
+    // console.log("last body", body);
 
     try {
       const response = await axios.post(url, body, { headers });
