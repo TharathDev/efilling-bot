@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');  // To read the JSON file
 
 // Read data.json file
-fs.readFile('./data3.json', 'utf8', (err, data) => {
+fs.readFile('./data.json', 'utf8', (err, data) => {
   if (err) {
     console.error("Error reading data.json:", err);
     return;
@@ -16,24 +16,27 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
   const keys = Object.keys(invoices[0]);
 
   const textJsContent = `
-    fetch("https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api", {
-      "headers": {
-        "accept": "application/json, text/plain, */*",
-        "accept-language": "en-US,en;q=0.9",
-        "content-type": "application/json;charset=UTF-8",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "x-requested-with": "XMLHttpRequest",
-        "x-xsrf-token": "4b73d7a0-2e37-4179-8c2a-a125b70b5c26",
-        "cookie": "XSRF-TOKEN=4b73d7a0-2e37-4179-8c2a-a125b70b5c26; OWPJSESSIONID=OTZkNTYyMTgtYWRjZS00ZDM0LTk0N2ItZTBhMmY2ZDBkYjM1; TS01214ff7=01bf609f0801c2bc828f2db9c8d74998b92e7cadb40840fda021b85c05aa29faa15fcdd4266c1a77d7f620d087a76513c656f12755; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; __zlcmid=1Oan9BtWl16qg4f; TS01551615=01bf609f08a72ad18f8b76c1ec9236d7b142fe4bfee9ad67e317cec77b2b27a64fc856b0178007f5d9f2b0ca26708462a71f3c5178; TS39867566027=080cb2d710ab2000148e2efbda750726599f431eab6a8c71fe68f60ef0d88cdd14f898c03dbefbfc082699a0eb1130007ced54e790c8681025c493c188bde11edd7492757fd649cd5374a0f11172afa332e72ea5a5e656668004efff925c3081"
-      },
-      "referrer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/JknEVO53AZQj",
-      "referrerPolicy": "strict-origin-when-cross-origin",
-      "body": "{\"COM_ID\":\"JknEVO53AZQj\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":2,\"ITEM_ID\":\"mObpb5nOMN3L\",\"INV_DATE\":\"2024-10-01\",\"INV_NO\":\"2024-0219\",\"TOTAL_AMT\":2600000,\"TRANSACTION\":2,\"VAT_TYPE\":3,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":0,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"លក់អង្ករផ្កាម្លិះ\",\"STCS_AMT\":0}",
-      "method": "POST",
-      "mode": "cors"
-    });
+  fetch("https://efiling.tax.gov.kh/gdtefilingweb/purchase-sale/savepurchase-saletax-api", {
+    "headers": {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "en-US,en;q=0.9",
+      "content-type": "application/json;charset=UTF-8",
+      "sec-ch-ua": "\"Chromium\";v=\"130\", \"Google Chrome\";v=\"130\", \"Not?A_Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "x-kl-ajax-request": "Ajax_Request",
+      "x-requested-with": "XMLHttpRequest",
+      "x-xsrf-token": "b6311c30-b602-41ca-8578-57cd66abb4da",
+      "cookie": "XSRF-TOKEN=b6311c30-b602-41ca-8578-57cd66abb4da; OWPJSESSIONID=YzE5OTRkNWYtOTBkYy00NGM1LTgxYWMtZDM4Y2ZjNTM5ZTg1; TS01214ff7=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; __zlcmid=1Ofn9wlDH47eDJw; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; TS39867566027=080cb2d710ab2000babf48449908d66fa1b5ca654f256d20649d296b422a9f69db92f50c31fa2d2c08c68b892c113000394367bd76134048a1f62c7587c7687381579d168a0dc0acc749f395ba5c3da29642497ae877a4c5921139115d755506",
+      "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/Qqap9d85dNOM",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "body": "{\"COM_ID\":\"Qqap9d85dNOM\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":2,\"ITEM_ID\":\"JknEV505OpZQ\",\"INV_DATE\":\"2024-10-01\",\"INV_NO\":\"INV24-0275\",\"TOTAL_AMT\":58282519,\"TRANSACTION\":2,\"VAT_TYPE\":1,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":0,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"សាំងស៊ុបពែ(ULG)  សាំងធម្មតា(ULR)  ប្រេងម៉ាស៊ូត(HSD)\",\"STCS_AMT\":0}",
+    "method": "POST"
+  });
     `;
 
   const extractInvoiceData = (invoice) => {
@@ -115,19 +118,21 @@ fs.readFile('./data3.json', 'utf8', (err, data) => {
       // Add each key back dynamically based on its corresponding value from the invoice object
       if (key === 'TOTAL_AMT') {
         body[key] = parseFloat(invoice[key].replace(/,/g, '').trim()); // For TOTAL_AMT, we clean and parse
-      } else {
+      } else if (key === 'ACCOM_AMT') {
+        body[key] = parseFloat(invoice[key].replace(/,/g, '').trim()); // For TOTAL_AMT, we clean and parse
+      }else {
         body[key] = invoice[key].trim(); // For other keys, just trim
       }
     });
 
-    console.log(url,body,headers);
+    // console.log(body);
 
-    // try {
-    //   const response = await axios.post(url, body, { headers });
-    //   console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
-    // } catch (error) {
-    //   console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
-    // }
+    try {
+      const response = await axios.post(url, body, { headers });
+      console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
+    } catch (error) {
+      console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
+    }
   };
 
   // 3. Sequentially send the request
