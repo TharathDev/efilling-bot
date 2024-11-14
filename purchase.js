@@ -29,12 +29,12 @@ fs.readFile("./data.json", "utf8", (err, data) => {
       "sec-fetch-site": "same-origin",
       "x-kl-ajax-request": "Ajax_Request",
       "x-requested-with": "XMLHttpRequest",
-      "x-xsrf-token": "b6311c30-b602-41ca-8578-57cd66abb4da",
-      "cookie": "XSRF-TOKEN=b6311c30-b602-41ca-8578-57cd66abb4da; OWPJSESSIONID=YzE5OTRkNWYtOTBkYy00NGM1LTgxYWMtZDM4Y2ZjNTM5ZTg1; TS01214ff7=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; __zlcmid=1Ofn9wlDH47eDJw; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08a3f36f04811a78c86f982936797190bf1a7f048d2d24b7aa174eeda4c5f58e940f89d30f61bedfd6b3ad1aa92a870a32; TS39867566027=080cb2d710ab20000871c5dc7abc82e1502a72e5bd4b7e407df04fbd258f430c193ac88aa2ba6c1108a166848c113000ed3f697c7432bb06d3c427eec45234c3ecd4c481aed3b746781d316edc1249d28e85d06328b44411794cedb3744e9150",
-      "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/Qqap9d85dNOM",
+      "x-xsrf-token": "208a2b37-e4c6-418c-8ee9-013c04cbab60",
+      "cookie": "XSRF-TOKEN=208a2b37-e4c6-418c-8ee9-013c04cbab60; OWPJSESSIONID=MDg2MzFmZGUtZTI2My00Y2M2LWEyNDAtYTAxZTQwZTY1ZmMw; TS01214ff7=01bf609f08a183090d7de476e769756cd41f9d489fd32174ac4f5a1b6eef4dd35b65e345041d8ee176aad1ba7fba9abb8ca9e4e533; __zlcmid=1Ofn9wlDH47eDJw; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08a183090d7de476e769756cd41f9d489fd32174ac4f5a1b6eef4dd35b65e345041d8ee176aad1ba7fba9abb8ca9e4e533; TS39867566027=080cb2d710ab2000c4556113e7187e5673cd822ac90b07bf9ebe9770dd54eaab7fed49d875eb4cb108b7a2c0ff11300060a2bea716138cac9e4830d0ffecf9f5f3659d079234688c44d4189e966eeeea775bf23f458654c64046b51cd5561ce0",
+      "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/z7gEjX1D1NMY",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
-    "body": "{\"COM_ID\":\"Qqap9d85dNOM\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":1,\"ITEM_ID\":\"YD1pO1o8AZ2k\",\"INV_DATE\":\"2024-10-01\",\"INV_NO\":\"1739998\",\"TOTAL_AMT\":178684,\"TRANSACTION\":1,\"VAT_TYPE\":1,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":0,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"សេវាអ៊ីនធីណេត\",\"STCS_AMT\":0}",
+    "body": "{\"COM_ID\":\"z7gEjX1D1NMY\",\"TAX_BRANCH\":2014018,\"IS_BRANCH\":false,\"COMPANY_BRANCH\":0,\"EXCHANGE_RATE\":11,\"MONTH\":\"10\",\"YEAR\":\"2024\",\"TAXPAYER_TYPE\":1,\"ITEM_ID\":\"YlDAngBGNRW3\",\"INV_DATE\":\"2024-10-10\",\"INV_NO\":\"HQTI-0000014625\",\"TOTAL_AMT\":223304720,\"TRANSACTION\":1,\"VAT_TYPE\":1,\"CATEGORY\":1,\"NONE_VAT_AMT\":0,\"PLT_AMT\":0,\"SPEC_AMT\":0,\"ACCOM_AMT\":0,\"COM_TYPE\":2,\"PPT_RATE\":1,\"SECTOR_TYPE\":0,\"TREASURY_INV_NO\":\"\",\"INV_REMARK\":\"CLICK 125 YM23: WHITE  CLICK 160 YM24: WHITE  SCOOPY CLUB 12 YM24:BLACK  SCOOPY PRESTIGE YM24: WHITE  SCOOPY CLUB 12 YM24: WHITE  BeAT YM25: BLUE  DREAM YM24:BLACK  DREAM YM25:BLACK  PCX YM24: WHITE+F\",\"STCS_AMT\":0}",
     "method": "POST"
   });
     `;
@@ -91,32 +91,35 @@ fs.readFile("./data.json", "utf8", (err, data) => {
   // get company info id if ITEM_ID does existed
 
   const fetchCompanyInfo = async (tin, headers) => {
-    const url = "https://efiling.tax.gov.kh/gdtefilingweb/company/info";
-
     const type = tin.includes("-") ? 1 : 2;
+    const url =
+      type === 1
+        ? "https://efiling.tax.gov.kh/gdtefilingweb/company/info"
+        : "https://efiling.tax.gov.kh/gdtefilingweb/api/nontaxpayer";
 
-    const body = JSON.stringify({
-      TIN: tin,
-      TYPE: type
-    });
+    const body = JSON.stringify(
+      type === 1 ? { TIN: tin, TYPE: type } : { TIN: tin }
+    );
+
+    // console.log("url:", url, "body:",body);
 
     try {
       const response = await fetch(url, {
         method: "POST",
-        headers: headers,
-        body: body
+        headers,
+        body
       });
 
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      console.log(`Response for fetchCompanyInfo for ${tin}:`);
 
       const data = await response.json();
-      const id = data.data.id;
+      const id = data.DATA.ID;
+
+      console.log(`Response for ${tin}: ${response.data}  ${id}`);
       return { id, type };
     } catch (error) {
-      console.error("Fetch error:", error);
+      console.error("Fetch error:", error.message);
     }
   };
 
@@ -142,14 +145,10 @@ fs.readFile("./data.json", "utf8", (err, data) => {
     };
 
     if (invoice.ITEM_ID) {
-      console.log("HHH");
       const newItemId = await fetchCompanyInfo(invoice.ITEM_ID, headers);
-      console.log("newItemId", newItemId);
       if (newItemId) {
         invoice.ITEM_ID = newItemId.id; // Replace ITEM_ID with the fetched id
         result.body.TAXPAYER_TYPE = newItemId.type;
-      } else {
-        console.log("No id returned from fetchCompanyInfo.");
       }
     }
 
