@@ -29,8 +29,8 @@ fs.readFile('./data.json', 'utf8', (err, data) => {
       "sec-fetch-site": "same-origin",
       "x-kl-ajax-request": "Ajax_Request",
       "x-requested-with": "XMLHttpRequest",
-      "x-xsrf-token": "b6311c30-b602-41ca-8578-57cd66abb4da",
-      "cookie": "XSRF-TOKEN=b6311c30-b602-41ca-8578-57cd66abb4da; OWPJSESSIONID=YzE5OTRkNWYtOTBkYy00NGM1LTgxYWMtZDM4Y2ZjNTM5ZTg1; TS01214ff7=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; __zlcmid=1Ofn9wlDH47eDJw; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08ea2bd41271178e898e538d59753bc5fa9779ddd850b36c31f9c30b5ec4320e333eaccd385dd02b418a3960a2b760bd27; TS39867566027=080cb2d710ab2000babf48449908d66fa1b5ca654f256d20649d296b422a9f69db92f50c31fa2d2c08c68b892c113000394367bd76134048a1f62c7587c7687381579d168a0dc0acc749f395ba5c3da29642497ae877a4c5921139115d755506",
+      "x-xsrf-token": "89670471-91bf-42d6-a12a-47d6a8dd1ec4",
+      "cookie": "XSRF-TOKEN=89670471-91bf-42d6-a12a-47d6a8dd1ec4; OWPJSESSIONID=MzUxMjg0NTgtZWUwMy00NTk0LWI5MGMtMTM3MTBkZWUxOTYz; TS01214ff7=01bf609f08c346d93d100363a271328023b1d5e087532635a7aa95571fa86be9d906b772eb7939b57dcdd439dc509896cd5227570c; BIGipServerPRO_OWP_WEB_SVR_POOL=372315308.47873.0000; TS01551615=01bf609f08c346d93d100363a271328023b1d5e087532635a7aa95571fa86be9d906b772eb7939b57dcdd439dc509896cd5227570c; __zlcmid=1OinAPE2ZGRgSex; TS39867566027=080cb2d710ab2000faca5690b84ad0e8d545846ee6fad7e6a21f92d00610e445d95eef2bb6790e1b08a8c7b24b113000afbbd19fb2b91f7ca577ec50135905756f4942a97ad15842e7fef0e79e73ea5e3904246f7aa6a45f03728df09f57a27b",
       "Referer": "https://efiling.tax.gov.kh/gdtefilingweb/entry/purchase-sale/Qqap9d85dNOM",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
@@ -127,12 +127,12 @@ fs.readFile('./data.json', 'utf8', (err, data) => {
 
     // console.log(body);
 
-    try {
-      const response = await axios.post(url, body, { headers });
-      console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
-    } catch (error) {
-      console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
-    }
+    // try {
+    //   const response = await axios.post(url, body, { headers });
+    //   console.log(`Response for INV_NO ${invoice.INV_NO}:`, response.data);
+    // } catch (error) {
+    //   console.error(`Error for INV_NO ${invoice.INV_NO}:`, error.message);
+    // }
   };
 
   // 3. Sequentially send the request
