@@ -1,16 +1,182 @@
 [
     {
-      "INV_DATE": "5-2-24",
-      "INV_NO": "HQTI-0000014942",
-      "INV_REMARK": "CLICK125 YM23: WHITE  SCOOPY PRESSTIGE YM24: WHITE  SCOOPY CLUB 12 YM24: WHITE  BeAT YM25: BLACK  DREAM YM25: BLACK  DREAM YM25: BLUE  DREAM YM25: RED  PCX YM24: WHITE",
-      "TOTAL_AMT": " 227,278,800 ",
-      "ITEM_ID": "L001-100046827"
+        "INV_DATE": "2024-11-01",
+        "INV_NO": "2024-0297",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 208,000 "
     },
     {
-      "INV_DATE": "9-8-24",
-      "INV_NO": "HQTI-0000015236",
-      "INV_REMARK": "CLICK125 YM23: White  CLICK160 YM24: White  SCOOPY CLUB 12 YM24: BLACK  SCOOPY PRESTIGE YM24: BLACK  SCOOPY PRESTIGE YM24: WHITE  BeAT YM25: WHITE  WAVE110 YM25: BLACK  DREAM YM25: BLACK",
-      "TOTAL_AMT": " 220,688,460 ",
-      "ITEM_ID": "L001-100046827"
+        "INV_DATE": "2024-11-02",
+        "INV_NO": "2024-0298",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 189,000 "
+    },
+    {
+        "INV_DATE": "2024-11-03",
+        "INV_NO": "2024-0299",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 315,000 "
+    },
+    {
+        "INV_DATE": "2024-11-04",
+        "INV_NO": "2024-0300",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 209,000 "
+    },
+    {
+        "INV_DATE": "2024-11-05",
+        "INV_NO": "2024-0301",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 221,000 "
+    },
+    {
+        "INV_DATE": "2024-11-06",
+        "INV_NO": "2024-0302",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 157,000 "
+    },
+    {
+        "INV_DATE": "2024-11-07",
+        "INV_NO": "2024-0303",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 195,000 "
+    },
+    {
+        "INV_DATE": "2024-11-08",
+        "INV_NO": "2024-0304",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 173,000 "
+    },
+    {
+        "INV_DATE": "2024-11-09",
+        "INV_NO": "2024-0305",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 182,000 "
+    },
+    {
+        "INV_DATE": "2024-11-10",
+        "INV_NO": "2024-0306",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 194,000 "
+    },
+    {
+        "INV_DATE": "2024-11-11",
+        "INV_NO": "2024-0307",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 197,000 "
+    },
+    {
+        "INV_DATE": "2024-11-12",
+        "INV_NO": "2024-0308",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 173,000 "
+    },
+    {
+        "INV_DATE": "2024-11-13",
+        "INV_NO": "2024-0309",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 71,000 "
+    },
+    {
+        "INV_DATE": "2024-11-14",
+        "INV_NO": "2024-0310",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 206,000 "
+    },
+    {
+        "INV_DATE": "2024-11-15",
+        "INV_NO": "2024-0311",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 180,000 "
+    },
+    {
+        "INV_DATE": "2024-11-16",
+        "INV_NO": "2024-0312",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 196,000 "
+    },
+    {
+        "INV_DATE": "2024-11-17",
+        "INV_NO": "2024-0313",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 193,000 "
+    },
+    {
+        "INV_DATE": "2024-11-18",
+        "INV_NO": "2024-0314",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 160,000 "
+    },
+    {
+        "INV_DATE": "2024-11-19",
+        "INV_NO": "2024-0315",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 183,000 "
+    },
+    {
+        "INV_DATE": "2024-11-20",
+        "INV_NO": "2024-0316",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 210,000 "
+    },
+    {
+        "INV_DATE": "2024-11-21",
+        "INV_NO": "2024-0317",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 189,000 "
+    },
+    {
+        "INV_DATE": "2024-11-22",
+        "INV_NO": "2024-0318",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 185,000 "
+    },
+    {
+        "INV_DATE": "2024-11-23",
+        "INV_NO": "2024-0319",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 185,000 "
+    },
+    {
+        "INV_DATE": "2024-11-24",
+        "INV_NO": "2024-0320",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 209,000 "
+    },
+    {
+        "INV_DATE": "2024-11-25",
+        "INV_NO": "2024-0321",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 231,000 "
+    },
+    {
+        "INV_DATE": "2024-11-26",
+        "INV_NO": "2024-0322",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 129,000 "
+    },
+    {
+        "INV_DATE": "2024-11-27",
+        "INV_NO": "2024-0323",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 223,000 "
+    },
+    {
+        "INV_DATE": "2024-11-28",
+        "INV_NO": "2024-0324",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 247,100 "
+    },
+    {
+        "INV_DATE": "2024-11-29",
+        "INV_NO": "2024-0325",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 247,000 "
+    },
+    {
+        "INV_DATE": "2024-11-30",
+        "INV_NO": "2024-0326",
+        "INV_REMARK": "លក់គ្រឿងសំណង់",
+        "TOTAL_AMT": " 257,100"
     }
-  ]
+]
